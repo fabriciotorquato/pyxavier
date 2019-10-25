@@ -13,13 +13,6 @@
 | ------------------ | ------ | ---------------------------------------- |
 | get raw data - EEG | Emokit | [API](https://github.com/openyou/emokit) |
 
-## Setup
-
-### Clone this repository
-
-    git clone
-    cd tcc-dtc-2019
-
 ### Setup project
 
     ./setup.sh
