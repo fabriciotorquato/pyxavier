@@ -1,0 +1,7 @@
+<launch>
+    <!-- Turtlesim Node-->
+    <node pkg="turtlesim_cleaner" type="talker2.py" name="talker2"/>
+    <node pkg="turtlesim_cleaner" type="listener2.py" name="listener2"  launch-prefix="xterm -e" />
+    <node pkg="turtlesim_cleaner" type="keyCatch2.py" name="keyCatch2" launch-prefix="xterm -e"/>
+
+</launch>

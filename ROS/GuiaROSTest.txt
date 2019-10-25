@@ -1,0 +1,42 @@
+
+TCC_GIT: /home/lucasdutra/Desktop/TCC_Git/tcc-dtc-2019/ROS/sender/turtlesim_cleaner/src
+
+
+
+raspberry:
+
+iniciar ros
+cd ros/catkin_ws
+source devel/setup.bash
+
+
+Mover apenas o eixo do carrinho
+rosrun turtlesim_cleaner picarROS2.py 
+
+Mover o carrinho
+rosrun turtlesim_cleaner picarROS.py 
+
+
+pc:
+Iniciar ROS
+export ROS_MASTER_URI=http://172.26.92.210:11311
+
+export ROS_IP=172.26.92.73
+
+Escrever os comando para enviar
+rosrun turtlesim_cleaner keyCatchRSP.py 
+
+--x--
+FORWARD = 'forward'
+TURN_LEFT = 'turn left'
+TURN_RIGHT = 'turn right'
+STOP = 'stop'
+--x--
+
+Executar com o EEG sem a tartaruga
+roslaunch turtlesim_cleaner teste_turtle2.launch 
+
+
+Executar com o EEG com a tartaruga
+roslaunch turtlesim_cleaner teste_turtle.launch 
+
