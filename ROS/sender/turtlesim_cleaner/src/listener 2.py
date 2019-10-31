@@ -21,6 +21,7 @@ class TurtleBot:
 			car_publisher.publish(decoy)
 			rospy.loginfo('%s - %s', data.data, decoy)
 			
+			
 	def toSpeed(self,typeMove):
 	    decodificado = ' '
 	    if typeMove=='1':
@@ -28,11 +29,11 @@ class TurtleBot:
 		
 	    elif typeMove=='0':
 				decodificado = xavier_command.TURN_LEFT
+
 	    elif typeMove == '2':
 				decodificado = xavier_command.TURN_RIGHT
 
 	    return decodificado
-	
 	def initListenet(self, data):
 		if(data.data == "i" or data.data == "I"):
 			self.init = True
@@ -54,8 +55,5 @@ class TurtleBot:
 		rospy.spin()
 
 if __name__ == '__main__':
-    try:
-		x = TurtleBot()
-		x.listener()
-    except rospy.ROSInterruptException:
-        pass
+    x = TurtleBot()
+    x.listener()

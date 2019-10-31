@@ -89,15 +89,15 @@ class TurtleBot:
 
 if __name__ == '__main__':
     try:
-	x = TurtleBot()
-	x.listener()
-	car_publisher = rospy.Publisher('command', String, queue_size=10)
-	decoy =  xavier_command.STOP
-	car_publisher.publish(decoy)
+		x = TurtleBot()
+		x.listener()
+		car_publisher = rospy.Publisher('command', String, queue_size=10)
+		decoy =  xavier_command.STOP
+		car_publisher.publish(decoy)
     except rospy.ROSInterruptException:
-	car_publisher = rospy.Publisher('command', String, queue_size=10)
-	decoy =  xavier_command.STOP
-	car_publisher.publish(decoy)
-        pass
+		car_publisher = rospy.Publisher('command', String, queue_size=10)
+		decoy =  xavier_command.STOP
+		car_publisher.publish(decoy)
+                pass
 
 

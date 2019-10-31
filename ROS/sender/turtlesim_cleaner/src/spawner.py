@@ -25,6 +25,8 @@ class SpawnerTurtle:
       self.pose2 = Pose()
       self.finalState = False
       self.folderPath = ''
+      self.position = 0
+
    def randomSpaw(self, data):
       
       if(data.data == "i" or data.data == "I"):
@@ -32,19 +34,15 @@ class SpawnerTurtle:
          rospy.wait_for_service('spawn')
          spawner = rospy.ServiceProxy('spawn', turtlesim.srv.Spawn)
          self.pose2 = Pose()
-         if random.randint(1,10) % 2 == 0:
-            random.seed()
-            self.pose2.x =  random.uniform(0.3, 3.9)
-         else:
-            random.seed()
-            self.pose2.x =  random.uniform(8.0, 11.0)
-
-         if random.randint(1,10) % 2 == 0:
-            random.seed()
-            self.pose2.y =  random.uniform(0.3, 3.9)
-         else:
-            random.seed()
-            self.pose2.y =  random.uniform(8.0, 11.0)
+	 if self.position == 0:
+            self.pose2.x =  9.0
+            self.pose2.y =  9.0
+	 elif self.position == 1:
+            self.pose2.x =  2.5
+            self.pose2.y =  9.0
+	 elif self.position == 2:
+            self.pose2.x =  2.5
+            self.pose2.y =  2.5
          spawner(self.pose2.x, self.pose2.y, 0, 'turtle2')
          self.state = True
          self.timeInit = time.time()
@@ -64,6 +62,9 @@ class SpawnerTurtle:
             self.state = False
             self.pub.publish("P")
          self.finalState = False
+	 self.position = self.position + 1
+	 if self.position > 2:
+	    self.position = 0
          rospy.wait_for_service('reset')
          reset = rospy.ServiceProxy('reset', Empty)
          reset()
@@ -77,9 +78,9 @@ class SpawnerTurtle:
 
    def chceckPosition(self):
       if self.state:
+	 timeTotal = time.time() - self.timeInit
          if(self.pose2.x - 1.0 <= self.pose1.x and self.pose1.x <= self.pose2.x + 1.0 
          and self.pose2.y - 1.0 <= self.pose1.y and self.pose1.y <= self.pose2.y + 1.0):
-            timeTotal = time.time() - self.timeInit
             print("Tempo que levou para chegar:",timeTotal)
             f = open(self.folderPath+'/resultados.txt','w')
             f.write('Status: Completo\r\nTempo: '+str(timeTotal))
@@ -89,6 +90,17 @@ class SpawnerTurtle:
             self.pub.publish("P")
             self.state = False
             self.finalState = True
+	 if(timeTotal>=90.0):
+            print("Tempo na simulacao:",timeTotal)
+            f = open(self.folderPath+'/resultados.txt','w')
+            f.write('Status: Incompleto\r\nTempo: '+str(timeTotal))
+            f.close()
+            screenShot = App()
+            screenShot.screenshot(self.folderPath,"imagem")
+            self.pub.publish("P")
+            self.state = False
+            self.finalState = True
+
 
    def updatePath(self, data):
       self.folderPath = data.data
