@@ -1,0 +1,12 @@
+*.pyc
+*.dat
+*.pkl
+*.sav
+*.log
+.vscode/*
+.idea/*
+libs/*
+venv/*
+
+models/*.png
+dataset/
