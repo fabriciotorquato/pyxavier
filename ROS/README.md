@@ -25,20 +25,20 @@
 * colar a pasta turtlesim_cleaner ~/ros/catkin_ws/src
 
 ## Run
-    no script knnTalker configurar o path para o do cumputador 
+    in script knnTalker configure the path for the computer
     
-    abra o primeiro terminal e inicie o ROS
+    open the first terminal and start the ROS
     roscore
     
-    abra o segundo terminal e inicie o turtle
+    open the second terminal and start the turtle
     rosrun turtlesim turtlesim_node
     
-    abra o terceiro terminal e inicie o KNN
+    open the third terminal and start the KNN
     cd ros/catkin_ws
     source devel/setup.bash
     rosrun turtlesim_cleaner knnTalker.py
     
-    abra o quarto terminal e inicie o listener
+    open the terminal room and start the listener
     cd ros/catkin_ws
     source devel/setup.bash
     rosrun turtlesim_cleaner listener.py
