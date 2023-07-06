@@ -25,7 +25,7 @@ python-mimeparse==1.6.0
 pytz==2018.7
 scikit-learn==0.20.2
 scikit-plot==0.3.7
-scipy==1.1.0
+scipy==1.10.0
 singledispatch==3.4.0.3
 six==1.11.0
 sklearn==0.0
